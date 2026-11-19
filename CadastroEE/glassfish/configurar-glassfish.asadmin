@@ -1,0 +1,10 @@
+# Execute no diretório glassfish/bin:
+#   asadmin multimode < configurar-glassfish.asadmin
+# Antes, copie mssql-jdbc-12.2.0.jre8.jar para glassfish/domains/domain1/lib
+# e reinicie o domínio.
+
+create-jdbc-connection-pool --datasourceclassname com.microsoft.sqlserver.jdbc.SQLServerDataSource --restype javax.sql.DataSource --property user=loja:password=loja:serverName=localhost:portNumber=1433:databaseName=loja:encrypt=true:trustServerCertificate=true SQLServerPool
+ping-connection-pool SQLServerPool
+create-jdbc-resource --connectionpoolid SQLServerPool jdbc/loja
+list-jdbc-connection-pools
+list-jdbc-resources
